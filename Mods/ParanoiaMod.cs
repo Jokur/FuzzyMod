@@ -285,7 +285,7 @@ namespace FuzzyMod.Mods {
 			string[] words = new string[] { "bot", "cheat", "hack", "auto", "report" };
 
 			foreach(Chat.ChatMessageStruct msg in accusedBottingMessages) {
-                //Log("Msg: " + msg.Message);
+                Log("Msg: " + msg.Message);
 				foreach(string word in words) {
 					if(msg.Message.ToLower().IndexOf(word) > 0) {
 						Log("Someone is accusing us of botting");
