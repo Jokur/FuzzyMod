@@ -347,10 +347,10 @@ namespace FuzzyMod.Mods {
 				if(p.TargetGUID == ObjectManager.Me.GUID) {
 					if(playersKilledMe.ContainsKey(p.GUID)) {
 						playersKilledMe[p.GUID]++;
-						Log("Was killed by " + p.Name + ", he has killed me " + playersKilledMe[p.GUID] + " times");
+						Log("Was killed by " + p.Name + "(" + p.Level + "), he has killed me " + playersKilledMe[p.GUID] + " times");
 					} else {
 						playersKilledMe.Add(p.GUID, 1);
-						Log("Was killed by " + p.Name + " for the first time");
+						Log("Was killed by " + p.Name + "(" + p.Level + ") for the first time");
 					}
 
 					if(playersKilledMe[p.GUID] >= samePlayerIsGankingMeTimes) {
