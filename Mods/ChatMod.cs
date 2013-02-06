@@ -65,7 +65,8 @@ namespace FuzzyMod.Mods {
         public void ThreadMain() {
             while(true) {
                 if(chkPauseWhenChat.Checked) {
-					if(Keyboard.IsChatboxOpened && !isChatOpen && !Mailbox.IsMailboxOpen) {
+					UIFrame.Frame chatEditbox = UIFrame.GetFrameByName("ChatFrame1EditBox");
+					if(Keyboard.IsChatboxOpened && !isChatOpen && chatEditbox != null && chatEditbox.IsVisible /*!Mailbox.IsMailboxOpen*/) {
                         string currentState = API.Bot.Overrides.FiniteStateMachine.Engine.CurrentState;
                             
                         string[] disableChatStates = new string[] { "Moving", "Combat", "Loot", "SkinAround", "Mount" };
