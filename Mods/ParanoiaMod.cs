@@ -64,9 +64,7 @@ namespace FuzzyMod.Mods {
                 return;
             }
 
-			// Clear these lists if we restart the bot
-			playersTargetingMe.Clear();
-			playersKilledMe.Clear();
+			ResetAllConditions();
 
             if(!thread.IsAlive)
                 StartThread();
@@ -230,10 +228,12 @@ namespace FuzzyMod.Mods {
 						Log("Panicking...");
                         if(radLogout.Checked) {
 							Log("I'm logging out!");
-                            Logout();
+							Logout();
+							ResetAllConditions();
 						} else if(radStopBot.Checked) {
 							Log("I'm stopping the bot!");
-                            API.Bot.Stop();
+							API.Bot.Stop();
+							ResetAllConditions();
                             break;
 						} else if(radHearthstone.Checked && ObjectManager.Me.IsAlive) {
 							Log("I'm hearthing the hell out of here!");
@@ -242,6 +242,7 @@ namespace FuzzyMod.Mods {
                             MyWoW.Helpers.Inventory.UseItemByName("Hearthstone");
                             Thread.Sleep(10000);
                             API.Bot.Stop();
+							ResetAllConditions();
                             break;
                         }
 
@@ -270,6 +271,12 @@ namespace FuzzyMod.Mods {
                 Thread.Sleep(100);
             }
         }
+
+		void ResetAllConditions() {
+			playersTargetingMe.Clear();
+			playersKilledMe.Clear();
+			accusedBottingMessages.Clear();
+		}
 
         void CheckForAccuses(ref bool condition) {
 			if(!accusedBotting)
