@@ -79,6 +79,12 @@
     <Compile Include="Mods\ChatMod.Designer.cs">
       <DependentUpon>ChatMod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mods\TempMod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mods\TempMod.Designer.cs">
+      <DependentUpon>TempMod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mods\DisassembleMod.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mods\ChatMod.resx">
       <DependentUpon>ChatMod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mods\TempMod.resx">
+      <DependentUpon>TempMod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mods\DisassembleMod.resx">
       <DependentUpon>DisassembleMod.cs</DependentUpon>
