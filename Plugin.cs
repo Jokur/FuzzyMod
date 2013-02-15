@@ -22,7 +22,7 @@ namespace FuzzyMod
 
 		public static Ini.IniFile ini = new Ini.IniFile(ShadowBot.Functions.Apps.StartupPath + @"\FuzzyMod.ini");
 
-		public static string version = "1.1.3";
+		public static string version = "1.2.0";
         
         internal static void Initialize() {}
 
@@ -32,6 +32,7 @@ namespace FuzzyMod
             mods.Add(new ParanoiaMod());
             mods.Add(new ChatMod());
 			mods.Add(new DisassembleMod());
+			mods.Add(new CameraMod());
 			mods.Add(new TempMod());
 
             if(!Forms.AllForms.main.Visible) {
