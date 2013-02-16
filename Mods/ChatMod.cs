@@ -66,12 +66,12 @@ namespace FuzzyMod.Mods {
             while(true) {
                 if(chkPauseWhenChat.Checked) {
 					UIFrame.Frame chatEditbox = UIFrame.GetFrameByName("ChatFrame1EditBox");
-					if(Keyboard.IsChatboxOpened && !isChatOpen && chatEditbox != null && chatEditbox.IsVisible /*!Mailbox.IsMailboxOpen*/) {
+					if(Keyboard.IsChatboxOpened && !isChatOpen && chatEditbox != null && chatEditbox.IsVisible && !Mailbox.IsMailboxOpen) {
                         string currentState = API.Bot.Overrides.FiniteStateMachine.Engine.CurrentState;
                             
                         string[] disableChatStates = new string[] { "Moving", "Combat", "Loot", "SkinAround", "Mount" };
 
-                        if (API.Bot.Overrides.FiniteStateMachine.Engine.Running /*&& disableChatStates.Contains(currentState)*/) {
+                        if (API.Bot.Overrides.FiniteStateMachine.Engine.Running && disableChatStates.Contains(currentState)) {
                             // Pause
                             Log("Chatting - Pausing bot");
 							isChatOpen = true; 

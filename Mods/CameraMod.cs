@@ -105,7 +105,7 @@ namespace FuzzyMod.Mods {
 				if(API.Bot.Overrides.FiniteStateMachine.Engine.Running) {
 					string currentState = API.Bot.Overrides.FiniteStateMachine.Engine.CurrentState;
 
-					string[] disableChatStates = new string[] { "Moving", "Restingb", "Mount" };
+					string[] disableChatStates = new string[] { "Moving", "Resting", "Mount" };
 
 					if(disableChatStates.Contains(currentState)) {
 						Position cameraPos = new Position(Camera.X, Camera.Y, Camera.Z);
@@ -131,7 +131,7 @@ namespace FuzzyMod.Mods {
 		private void MoveCameraUp(int amount) {
 			int width = MyWoW.Helpers.Interface.WindowWidth;
 			int height = MyWoW.Helpers.Interface.WindowHeight;
-			POINT pDown = new POINT( width/2, height/2 );
+			POINT pDown = new POINT(width/2, height/2);
 			POINT pUp = new POINT(width / 2, height / 2 + amount);
 			Mouse.SetCursorPos(pDown);
 			Thread.Sleep(50);
