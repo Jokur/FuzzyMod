@@ -112,15 +112,17 @@ namespace FuzzyMod.Mods {
 						double angle = cameraPos.AngleVertical();
 						const double epsilon = Math.PI * 0.01;
 
+						int moveDist = (int)RadToDeg(Math.Abs(angle - cameraAngle)) * 5;
+
 						if(angle > Math.PI) {
 							Log("Move camera up, we're too far down");
-							MoveCameraUp(50);
+							MoveCameraUp(400);
 						} else if(angle + epsilon < cameraAngle) {
 							Log("Move camera up");
-							MoveCameraUp(10);
+							MoveCameraUp(moveDist);
 						} else if(angle - epsilon > cameraAngle) {
 							Log("Move camera down");
-							MoveCameraDown(10);
+							MoveCameraDown(moveDist);
 						}
 					}
 				}
@@ -134,11 +136,11 @@ namespace FuzzyMod.Mods {
 			POINT pDown = new POINT(width/2, height/2);
 			POINT pUp = new POINT(width / 2, height / 2 + amount);
 			Mouse.SetCursorPos(pDown);
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.LeftDown();
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.SetCursorPos(pUp);
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.LeftUp();
 			Mouse.UnlockCursor();
 		}
@@ -149,11 +151,11 @@ namespace FuzzyMod.Mods {
 			POINT pDown = new POINT(width / 2, height / 2);
 			POINT pUp = new POINT(width / 2, height / 2 - amount);
 			Mouse.SetCursorPos(pDown);
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.LeftDown();
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.SetCursorPos(pUp);
-			Thread.Sleep(50);
+			Thread.Sleep(25);
 			Mouse.LeftUp();
 			Mouse.UnlockCursor();
 		}
