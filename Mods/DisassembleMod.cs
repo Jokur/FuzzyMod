@@ -434,12 +434,27 @@ namespace FuzzyMod.Mods {
 				txtItems.Text = itemsLeft.ToString();
 				Log(disassembleItem.ToString() + ": " + itemsLeft.ToString() + " left");
 
+				while(ObjectManager.Me.IsCasting && isRunning) {
+					Thread.Sleep(100);
+				}
+
 				UIFrame.Update();
 				UIFrame.Frame frame = UIFrame.GetFrameByName("LootFrame");
-				while(ObjectManager.Me.IsCasting || frame.IsVisible) {
-					Thread.Sleep(500);
+				while(!frame.IsVisible && isRunning) {
+					//Log("Waiting for loot window to open");
+					Thread.Sleep(100);
+					UIFrame.Update();
+					frame = UIFrame.GetFrameByName("LootFrame");
 				}
-				Thread.Sleep(500);
+
+				while(frame.IsVisible && isRunning) {
+					//Log("Waiting for loot window to close");
+					Thread.Sleep(100);
+					UIFrame.Update();
+					frame = UIFrame.GetFrameByName("LootFrame");
+				}
+
+				Thread.Sleep(100);
 			}
 
 
