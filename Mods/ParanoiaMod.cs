@@ -46,8 +46,6 @@ namespace FuzzyMod.Mods {
             InitializeComponent();
 
 			LoadSettings();
-
-			Mouse.Initialize();
 			
             thread = new Thread(new ThreadStart(ThreadMain));
             MyWoW.Helpers.Chat.Event_OnNewMessage += new Chat.OnMessageEventHandler(NewMessage);

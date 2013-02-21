@@ -214,6 +214,10 @@ namespace FuzzyMod.Mods {
 			if(cbActions.SelectedIndex < 0)
 				return;
 
+			if(ShadowBot.API.Bot.GetSettings.MouseHook_Enabled) {
+				Mouse.Initialize();
+			}
+
 			Spells.CloseMountFrame();
 			Spells.CloseSpellBookFrame();
 

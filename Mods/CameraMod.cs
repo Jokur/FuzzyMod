@@ -28,8 +28,6 @@ namespace FuzzyMod.Mods {
             InitializeComponent();
 
 			LoadSettings();
-
-			Mouse.Initialize();
         }
 
 		~CameraMod() {
@@ -101,6 +99,9 @@ namespace FuzzyMod.Mods {
 		}
 
 		private void ThreadCameraAdjust() {
+			if(ShadowBot.API.Bot.GetSettings.MouseHook_Enabled) {
+				Mouse.Initialize();
+			}
 			while(isRunningAdjustCamera) {
 				if(API.Bot.Overrides.FiniteStateMachine.Engine.Running) {
 					string currentState = API.Bot.Overrides.FiniteStateMachine.Engine.CurrentState;
