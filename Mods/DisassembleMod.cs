@@ -402,7 +402,6 @@ namespace FuzzyMod.Mods {
 
 			Log("Done!");
 
-			InventoryExt.CloseAllBags();
 
 			thread = null;
 			if(isRunning) {
@@ -424,11 +423,12 @@ namespace FuzzyMod.Mods {
 
 				disassembleSpell.GetActionBarAction.Push();
 				Thread.Sleep(500);
-				bool success = Inventory.UseItemById(disassembleItem.ItemId);
+				bool success = InventoryExt.UseItemByIdExt(disassembleItem.ItemId);
 				if(success) {
 					itemsLeft--;
 				} else {
 					isRunning = false;
+					Log("Unable to disassemble, maybe someone closed the bag");
 				}
 
 				txtItems.Text = itemsLeft.ToString();

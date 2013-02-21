@@ -8,6 +8,12 @@ using MyWoW.Helpers;
 
 namespace FuzzyMod.Classes {
 	public class InventoryExt : Inventory {
+		public enum MouseClick {
+			LEFT,
+			MIDDLE,
+			RIGHT,
+		}
+
 		/*public static Boolean PickUpItemById(int ItemId) {
 
 			int Bag = -1;
@@ -110,9 +116,101 @@ namespace FuzzyMod.Classes {
 
 		}*/
 
+		public static Boolean UseItemByIdExt(int itemId) {
+			int bag = -1;
+			int slot = -1;
+			int maxSlot = -1;
+
+			#region Backpack
+
+			if(bag == -1 || slot == -1)
+				for(int i = 1; i <= BackpackMaxSlot; i++)
+					if(GetBackpackItemBySlot(i).Entry == itemId) {
+						bag = 0;
+						slot = i;
+						maxSlot = BackpackMaxSlot;
+						break;
+					}
+
+			#endregion
+
+			#region Bag1
+
+			if(bag == -1 || slot == -1)
+				if(Bag1GUID != 0)
+					for(int i = 1; i <= Bag1.MaxSlot; i++)
+						if(Bag1.GetItemBySlot(i).Entry == itemId) {
+							bag = 1;
+							slot = i;
+							maxSlot = Bag1.MaxSlot;
+							break;
+						}
+
+			#endregion
+
+			#region Bag2
+
+			if(bag == -1 || slot == -1)
+				if(Bag2GUID != 0)
+					for(int i = 1; i <= Bag2.MaxSlot; i++)
+						if(Bag2.GetItemBySlot(i).Entry == itemId) {
+							bag = 2;
+							slot = i;
+							maxSlot = Bag2.MaxSlot;
+							break;
+						}
+
+			#endregion
+
+			#region Bag3
+
+			if(bag == -1 || slot == -1)
+				if(Bag3GUID != 0)
+					for(int i = 1; i <= Bag3.MaxSlot; i++)
+						if(Bag3.GetItemBySlot(i).Entry == itemId) {
+							bag = 3;
+							slot = i;
+							maxSlot = Bag3.MaxSlot;
+							break;
+						}
+
+			#endregion
+
+			#region Bag4
+
+			if(bag == -1 || slot == -1)
+				if(Bag4GUID != 0)
+					for(int i = 1; i <= Bag4.MaxSlot; i++)
+						if(Bag4.GetItemBySlot(i).Entry == itemId) {
+							bag = 4;
+							slot = i;
+							maxSlot = Bag4.MaxSlot;
+							break;
+						}
+
+			#endregion
+
+			if(bag == -1 ||
+				slot == -1 ||
+				maxSlot == -1)
+				return false;
+
+			return RightClickItemInBag(bag, slot);
+		}
+
 		public static Boolean LeftClickItemInBag(int bag, int slot) {
+			return ClickItemInBag(bag, slot, MouseClick.LEFT);
+		}
+
+		public static Boolean RightClickItemInBag(int bag, int slot) {
+			return ClickItemInBag(bag, slot, MouseClick.RIGHT);
+		}
+
+
+
+		public static Boolean ClickItemInBag(int bag, int slot, MouseClick mouseClick) {
 			Int32 MaxSlot = 16;
-			if( bag == 1 ) {
+			if(bag == 1) {
 				MaxSlot = Bag1.MaxSlot;
 			} else if(bag == 2) {
 				MaxSlot = Bag2.MaxSlot;
@@ -129,9 +227,20 @@ namespace FuzzyMod.Classes {
 			if(ContainerFrame1Item == null) {
 				//CloseAllBags();
 				return false;
+			} else if(!ContainerFrame1Item.IsVisible) {
+				return false;
 			} else {
 				System.Threading.Thread.Sleep(250);
-				ContainerFrame1Item.LeftClick();
+				switch(mouseClick) {
+					case MouseClick.LEFT:
+						ContainerFrame1Item.LeftClick();
+						break;
+					case MouseClick.RIGHT:
+						ContainerFrame1Item.RightClick();
+						break;
+					default:
+						break;
+				}
 				//CloseAllBags();
 				return true;
 			}
