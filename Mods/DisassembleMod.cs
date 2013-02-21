@@ -251,7 +251,7 @@ namespace FuzzyMod.Mods {
 			}
 
 			disassembleSpell = Spells.GetWoWSpellById(spellId);
-
+			
 			if(!disassembleSpell.OnActionBar) {
 				bool success = Spells.PlaceGatheringSpellOnBarById(spellId);
 
@@ -415,6 +415,12 @@ namespace FuzzyMod.Mods {
 
 		public void ThreadDisassemble() {
 			while(isRunning && itemsLeft > 0) {
+
+				// Make sure we're on the right action bar
+				if(ActionBar.CurrentActionBar != disassembleSpell.GetActionBarAction.Bar) {
+					ActionBar.ChangeActionBar(disassembleSpell.GetActionBarAction.Bar);
+					Thread.Sleep(1000);
+				}
 
 				disassembleSpell.GetActionBarAction.Push();
 				Thread.Sleep(500);
