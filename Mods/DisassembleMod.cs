@@ -179,6 +179,10 @@ namespace FuzzyMod.Mods {
 			Console.WriteLine("[Disassemble] " + message);
         }
 
+		private void LogDebug(String message) {
+			Console.WriteLine("[DEBUG][Disassemble] " + message);
+		}
+
 		private void RefreshActions() {
 			if(isRunning)
 				return;
@@ -290,16 +294,23 @@ namespace FuzzyMod.Mods {
 
 			cbActions.Items.Clear();
 
+			LogDebug("Refreshing list...");
+
 			foreach(DisassembleItem item in acceptableItems) {
+				LogDebug(item.Name);
 				Thread.Sleep(50);
 				int count = Inventory.GetItemCountByName(item.Name);
 				if(item.Profession == DisassembleProfession.JEWELCRAFTING || item.Profession == DisassembleProfession.INSCRIPTION) {
 					count /= 5; // Requires atleast 5 to disassemble
 				}
 
+				LogDebug(" Count: " + count.ToString());
+
 				// have enough units
 				if(count <= 0)
 					continue;
+
+				LogDebug(" Required Skill: " + item.RequiredSkill);
 
 				// Check skill requirements
 				bool hasSkillRequired = false;
@@ -307,14 +318,17 @@ namespace FuzzyMod.Mods {
 					case DisassembleProfession.JEWELCRAFTING:
 						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Jewelcrafting).CurrentSkill >= item.RequiredSkill)
 							hasSkillRequired = true;
+						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Jewelcrafting).CurrentSkill.ToString());
 						break;
 					case DisassembleProfession.INSCRIPTION:
 						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Inscription).CurrentSkill >= item.RequiredSkill)
 							hasSkillRequired = true;
+						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Inscription).CurrentSkill.ToString());
 						break;
 					case DisassembleProfession.ENCHANTING:
 						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Enchanting).CurrentSkill >= item.RequiredSkill)
 							hasSkillRequired = true;
+						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Enchanting).CurrentSkill.ToString());
 						break;
 				}
 
@@ -323,6 +337,7 @@ namespace FuzzyMod.Mods {
 
 				cbActions.Items.Add(item);
 			}
+			LogDebug("Done!");
 
 			Log("Done!");
 
@@ -389,6 +404,9 @@ namespace FuzzyMod.Mods {
 
 						BagItem lastBagItem = bagItems[bagItems.Count - 1];
 
+						LogDebug("Merging " + lastBagItem.wowItem.StackCount);
+						LogDebug(" with " + bagItem.wowItem.StackCount);
+
 						InventoryExt.LeftClickItemInBag(lastBagItem.bag, lastBagItem.slot);
 						Thread.Sleep(500);
 						InventoryExt.LeftClickItemInBag(bagItem.bag, bagItem.slot);
@@ -400,6 +418,7 @@ namespace FuzzyMod.Mods {
 
 			} while(runBagCheck && isRunning);
 
+			LogDebug("Done!");
 			Log("Done!");
 
 
