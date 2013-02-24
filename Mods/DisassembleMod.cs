@@ -313,26 +313,33 @@ namespace FuzzyMod.Mods {
 				LogDebug(" Required Skill: " + item.RequiredSkill);
 
 				// Check skill requirements
-				bool hasSkillRequired = false;
+				int currentSkill = 0;
 				switch(item.Profession) {
 					case DisassembleProfession.JEWELCRAFTING:
-						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Jewelcrafting).CurrentSkill >= item.RequiredSkill)
-							hasSkillRequired = true;
-						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Jewelcrafting).CurrentSkill.ToString());
+						currentSkill = ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Jewelcrafting).CurrentSkill;
+
+						// Draenei racial
+						if(ObjectManager.Me.Race == WowUnit.WoWRace.Draenei)
+							currentSkill += 10;
 						break;
 					case DisassembleProfession.INSCRIPTION:
-						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Inscription).CurrentSkill >= item.RequiredSkill)
-							hasSkillRequired = true;
-						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Inscription).CurrentSkill.ToString());
+						currentSkill = ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Inscription).CurrentSkill;
+						
 						break;
 					case DisassembleProfession.ENCHANTING:
-						if(ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Enchanting).CurrentSkill >= item.RequiredSkill)
-							hasSkillRequired = true;
-						LogDebug(" Current Skill: " + ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Enchanting).CurrentSkill.ToString());
+						currentSkill = ObjectManager.Me.GetSkillInfoByID(MyWoW.Helpers.DBC.SkillLine.Skill.Enchanting).CurrentSkill;
+
+						// Belf racial
+						if(ObjectManager.Me.Race == WowUnit.WoWRace.BloodElf)
+							currentSkill += 10;
 						break;
 				}
 
-				if(!hasSkillRequired)
+				
+
+				LogDebug(" Current Skill: " + currentSkill);
+
+				if(currentSkill >= item.RequiredSkill)
 					continue;
 
 				cbActions.Items.Add(item);
