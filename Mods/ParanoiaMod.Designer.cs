@@ -46,11 +46,13 @@
 			this.btnTest = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtLogoutTime = new System.Windows.Forms.TextBox();
+			this.chkWhisperAnything = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkWhisperAnything);
 			this.groupBox1.Controls.Add(this.radHearthstone);
 			this.groupBox1.Controls.Add(this.radNothing);
 			this.groupBox1.Controls.Add(this.radStopBot);
@@ -145,7 +147,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(266, 43);
+			this.label4.Location = new System.Drawing.Point(266, 66);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(47, 13);
 			this.label4.TabIndex = 12;
@@ -154,7 +156,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(183, 89);
+			this.label3.Location = new System.Drawing.Point(183, 112);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(122, 13);
 			this.label3.TabIndex = 11;
@@ -162,7 +164,7 @@
 			// 
 			// txtGotKilledTimes
 			// 
-			this.txtGotKilledTimes.Location = new System.Drawing.Point(151, 86);
+			this.txtGotKilledTimes.Location = new System.Drawing.Point(151, 109);
 			this.txtGotKilledTimes.Name = "txtGotKilledTimes";
 			this.txtGotKilledTimes.Size = new System.Drawing.Size(26, 20);
 			this.txtGotKilledTimes.TabIndex = 10;
@@ -173,7 +175,7 @@
 			// chkBeenKilled
 			// 
 			this.chkBeenKilled.AutoSize = true;
-			this.chkBeenKilled.Location = new System.Drawing.Point(26, 88);
+			this.chkBeenKilled.Location = new System.Drawing.Point(26, 111);
 			this.chkBeenKilled.Name = "chkBeenKilled";
 			this.chkBeenKilled.Size = new System.Drawing.Size(129, 17);
 			this.chkBeenKilled.TabIndex = 9;
@@ -195,7 +197,7 @@
 			// chkSamePlayerTargetingIncludeOppositeFaction
 			// 
 			this.chkSamePlayerTargetingIncludeOppositeFaction.AutoSize = true;
-			this.chkSamePlayerTargetingIncludeOppositeFaction.Location = new System.Drawing.Point(47, 65);
+			this.chkSamePlayerTargetingIncludeOppositeFaction.Location = new System.Drawing.Point(47, 88);
 			this.chkSamePlayerTargetingIncludeOppositeFaction.Name = "chkSamePlayerTargetingIncludeOppositeFaction";
 			this.chkSamePlayerTargetingIncludeOppositeFaction.Size = new System.Drawing.Size(139, 17);
 			this.chkSamePlayerTargetingIncludeOppositeFaction.TabIndex = 7;
@@ -205,7 +207,7 @@
 			// 
 			// txtSamePlayerTargetingSeconds
 			// 
-			this.txtSamePlayerTargetingSeconds.Location = new System.Drawing.Point(232, 40);
+			this.txtSamePlayerTargetingSeconds.Location = new System.Drawing.Point(232, 63);
 			this.txtSamePlayerTargetingSeconds.Name = "txtSamePlayerTargetingSeconds";
 			this.txtSamePlayerTargetingSeconds.Size = new System.Drawing.Size(28, 20);
 			this.txtSamePlayerTargetingSeconds.TabIndex = 6;
@@ -216,7 +218,7 @@
 			// chkSamePlayerTargeting
 			// 
 			this.chkSamePlayerTargeting.AutoSize = true;
-			this.chkSamePlayerTargeting.Location = new System.Drawing.Point(26, 42);
+			this.chkSamePlayerTargeting.Location = new System.Drawing.Point(26, 65);
 			this.chkSamePlayerTargeting.Name = "chkSamePlayerTargeting";
 			this.chkSamePlayerTargeting.Size = new System.Drawing.Size(208, 17);
 			this.chkSamePlayerTargeting.TabIndex = 5;
@@ -254,6 +256,16 @@
 			this.txtLogoutTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtLogoutTime.TextChanged += new System.EventHandler(this.ValuesEdited);
 			// 
+			// chkWhisperAnything
+			// 
+			this.chkWhisperAnything.AutoSize = true;
+			this.chkWhisperAnything.Location = new System.Drawing.Point(47, 42);
+			this.chkWhisperAnything.Name = "chkWhisperAnything";
+			this.chkWhisperAnything.Size = new System.Drawing.Size(115, 17);
+			this.chkWhisperAnything.TabIndex = 19;
+			this.chkWhisperAnything.Text = "Or just any whisper";
+			this.chkWhisperAnything.UseVisualStyleBackColor = true;
+			// 
 			// ParanoiaMod
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +299,7 @@
         private System.Windows.Forms.RadioButton radNothing;
         private System.Windows.Forms.RadioButton radStopBot;
         private System.Windows.Forms.RadioButton radHearthstone;
+		private System.Windows.Forms.CheckBox chkWhisperAnything;
 
     }
 }

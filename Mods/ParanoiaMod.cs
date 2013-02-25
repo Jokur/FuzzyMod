@@ -18,6 +18,7 @@ namespace FuzzyMod.Mods {
         private int logoutTime = 10;
 
 		private bool accusedBotting = false;
+		private bool whisperReceived = false;
 		private static LinkedList<Chat.ChatMessageStruct> accusedBottingMessages = new LinkedList<Chat.ChatMessageStruct>();
 
         private bool samePlayerTargeting = false;
@@ -83,6 +84,8 @@ namespace FuzzyMod.Mods {
 			Plugin.ini.IniWriteValue(DisplayName, "logoutTime", logoutTime.ToString());
 
 			Plugin.ini.IniWriteValue(DisplayName, "accusedBotting", accusedBotting.ToString());
+			Plugin.ini.IniWriteValue(DisplayName, "whisperReceived", whisperReceived.ToString());
+
 
 			Plugin.ini.IniWriteValue(DisplayName, "samePlayerTargeting", samePlayerTargeting.ToString());
 			Plugin.ini.IniWriteValue(DisplayName, "samePlayerTargetingSeconds", samePlayerTargetingSeconds.ToString());
@@ -109,6 +112,7 @@ namespace FuzzyMod.Mods {
 				logoutTime = int.Parse(Plugin.ini.IniReadValue(DisplayName, "logoutTime"));
 
 				accusedBotting = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "accusedBotting"));
+				whisperReceived = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "whisperReceived"));
 
 				samePlayerTargeting = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "samePlayerTargeting"));
 				samePlayerTargetingSeconds = int.Parse(Plugin.ini.IniReadValue(DisplayName, "samePlayerTargetingSeconds"));
@@ -169,6 +173,7 @@ namespace FuzzyMod.Mods {
 				samePlayerTargetingSeconds = int.Parse(txtSamePlayerTargetingSeconds.Text);
 
 				accusedBotting = chkWhisper.Checked;
+				whisperReceived = chkWhisperAnything.Checked;
 
                 samePlayerIsGankingMe = chkBeenKilled.Checked;
                 samePlayerIsGankingMeTimes = int.Parse(txtGotKilledTimes.Text);
@@ -188,6 +193,7 @@ namespace FuzzyMod.Mods {
 			txtSamePlayerTargetingSeconds.Text = samePlayerTargetingSeconds.ToString();
 
 			chkWhisper.Checked = accusedBotting;
+			chkWhisperAnything.Checked = whisperReceived;
 
 			chkBeenKilled.Checked = samePlayerIsGankingMe;
 			txtGotKilledTimes.Text = samePlayerIsGankingMeTimes.ToString();
@@ -289,6 +295,11 @@ namespace FuzzyMod.Mods {
 				foreach(string word in words) {
 					if(msg.Message.ToLower().IndexOf(word) > 0) {
 						Log("Someone is accusing us of botting");
+						condition = true;
+						break;
+					}
+					if(whisperReceived && msg.Type == Chat.ChatType.WHISPER_FROM) {
+						Log("Someone whispered us");
 						condition = true;
 						break;
 					}
