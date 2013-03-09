@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.radHearthstone = new System.Windows.Forms.RadioButton();
+			this.chkWhisperAnything = new System.Windows.Forms.CheckBox();
 			this.radNothing = new System.Windows.Forms.RadioButton();
 			this.radStopBot = new System.Windows.Forms.RadioButton();
 			this.radLogout = new System.Windows.Forms.RadioButton();
@@ -46,14 +46,14 @@
 			this.btnTest = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtLogoutTime = new System.Windows.Forms.TextBox();
-			this.chkWhisperAnything = new System.Windows.Forms.CheckBox();
+			this.chkHearthstone = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkHearthstone);
 			this.groupBox1.Controls.Add(this.chkWhisperAnything);
-			this.groupBox1.Controls.Add(this.radHearthstone);
 			this.groupBox1.Controls.Add(this.radNothing);
 			this.groupBox1.Controls.Add(this.radStopBot);
 			this.groupBox1.Controls.Add(this.radLogout);
@@ -76,17 +76,15 @@
 			this.groupBox1.TabIndex = 7;
 			this.groupBox1.TabStop = false;
 			// 
-			// radHearthstone
+			// chkWhisperAnything
 			// 
-			this.radHearthstone.AutoSize = true;
-			this.radHearthstone.Location = new System.Drawing.Point(26, 222);
-			this.radHearthstone.Name = "radHearthstone";
-			this.radHearthstone.Size = new System.Drawing.Size(185, 17);
-			this.radHearthstone.TabIndex = 18;
-			this.radHearthstone.TabStop = true;
-			this.radHearthstone.Text = "Stop the bot and use Hearthstone";
-			this.radHearthstone.UseVisualStyleBackColor = true;
-			this.radHearthstone.Click += new System.EventHandler(this.ValuesEdited);
+			this.chkWhisperAnything.AutoSize = true;
+			this.chkWhisperAnything.Location = new System.Drawing.Point(47, 42);
+			this.chkWhisperAnything.Name = "chkWhisperAnything";
+			this.chkWhisperAnything.Size = new System.Drawing.Size(115, 17);
+			this.chkWhisperAnything.TabIndex = 19;
+			this.chkWhisperAnything.Text = "Or just any whisper";
+			this.chkWhisperAnything.UseVisualStyleBackColor = true;
 			// 
 			// radNothing
 			// 
@@ -256,15 +254,16 @@
 			this.txtLogoutTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtLogoutTime.TextChanged += new System.EventHandler(this.ValuesEdited);
 			// 
-			// chkWhisperAnything
+			// chkHearthstone
 			// 
-			this.chkWhisperAnything.AutoSize = true;
-			this.chkWhisperAnything.Location = new System.Drawing.Point(47, 42);
-			this.chkWhisperAnything.Name = "chkWhisperAnything";
-			this.chkWhisperAnything.Size = new System.Drawing.Size(115, 17);
-			this.chkWhisperAnything.TabIndex = 19;
-			this.chkWhisperAnything.Text = "Or just any whisper";
-			this.chkWhisperAnything.UseVisualStyleBackColor = true;
+			this.chkHearthstone.AutoSize = true;
+			this.chkHearthstone.Location = new System.Drawing.Point(26, 222);
+			this.chkHearthstone.Name = "chkHearthstone";
+			this.chkHearthstone.Size = new System.Drawing.Size(123, 17);
+			this.chkHearthstone.TabIndex = 20;
+			this.chkHearthstone.Text = "use Hearthstone first";
+			this.chkHearthstone.UseVisualStyleBackColor = true;
+			this.chkHearthstone.Click += new System.EventHandler(this.ValuesEdited);
 			// 
 			// ParanoiaMod
 			// 
@@ -297,9 +296,9 @@
         private System.Windows.Forms.TextBox txtLogoutTime;
         private System.Windows.Forms.RadioButton radLogout;
         private System.Windows.Forms.RadioButton radNothing;
-        private System.Windows.Forms.RadioButton radStopBot;
-        private System.Windows.Forms.RadioButton radHearthstone;
+		private System.Windows.Forms.RadioButton radStopBot;
 		private System.Windows.Forms.CheckBox chkWhisperAnything;
+		private System.Windows.Forms.CheckBox chkHearthstone;
 
     }
 }

@@ -95,17 +95,14 @@ namespace FuzzyMod.Mods {
 			Plugin.ini.IniWriteValue(DisplayName, "samePlayerIsGankingMeTimes", samePlayerIsGankingMeTimes.ToString());
 
 			int radioButton = 0;
-			if(radNothing.Checked) {
+			if(radStopBot.Checked) {
 				radioButton = 1;
-			} else if(radHearthstone.Checked) {
-				radioButton = 2;
-			} else if(radStopBot.Checked) {
-				radioButton = 3;
 			} else if(radLogout.Checked) {
-				radioButton = 4;
+				radioButton = 2;
 			}
-			Plugin.ini.IniWriteValue(DisplayName, "radioButton", radioButton.ToString());
+			Plugin.ini.IniWriteValue(DisplayName, "panicReaction", radioButton.ToString());
 		}
+
 		private void LoadSettings() {
 			isLoadingSettings = true;
 			try {
@@ -122,19 +119,16 @@ namespace FuzzyMod.Mods {
 				samePlayerIsGankingMeTimes = int.Parse(Plugin.ini.IniReadValue(DisplayName, "samePlayerIsGankingMeTimes"));
 
 
-				int radioButton = int.Parse(Plugin.ini.IniReadValue(DisplayName, "radioButton"));
+				int radioButton = int.Parse(Plugin.ini.IniReadValue(DisplayName, "panicReaction"));
 				switch(radioButton) {
 					case 1:
-						radNothing.Checked = true;
-						break;
-					case 2:
-						radHearthstone.Checked = true;
-						break;
-					case 3:
 						radStopBot.Checked = true;
 						break;
-					case 4:
+					case 2:
 						radLogout.Checked = true;
+						break;
+					default:
+						radNothing.Checked = true;
 						break;
 				}
 			} catch(Exception e) {
@@ -232,6 +226,15 @@ namespace FuzzyMod.Mods {
 
 					if(conditionToPanic && !ObjectManager.Me.InCombat) {
 						Log("Panicking...");
+
+						if(chkHearthstone.Checked) {
+							Log("I'm hearthing the hell out of here!");
+							MyWoW.Helpers.Movements.StopMove();
+							API.Bot.Overrides.FiniteStateMachine.Engine.StopEngine();
+							MyWoW.Helpers.Inventory.UseItemByName("Hearthstone");
+							Thread.Sleep(11000);
+						}
+
                         if(radLogout.Checked) {
 							Log("I'm logging out!");
 							Logout();
@@ -241,16 +244,7 @@ namespace FuzzyMod.Mods {
 							API.Bot.Stop();
 							ResetAllConditions();
                             break;
-						} else if(radHearthstone.Checked && ObjectManager.Me.IsAlive) {
-							Log("I'm hearthing the hell out of here!");
-                            MyWoW.Helpers.Movements.StopMove();
-                            API.Bot.Overrides.FiniteStateMachine.Engine.StopEngine();
-                            MyWoW.Helpers.Inventory.UseItemByName("Hearthstone");
-                            Thread.Sleep(10000);
-                            API.Bot.Stop();
-							ResetAllConditions();
-                            break;
-                        }
+						}
 
                         Thread.Sleep(10000);
                     }
@@ -404,7 +398,7 @@ namespace FuzzyMod.Mods {
 
             while (!GameMenuFrame.IsVisible) {
                 MyWoW.Helpers.Keybindings.UseBinding("TOGGLEGAMEMENU");
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
                 UIFrame.Update();
             }
 
