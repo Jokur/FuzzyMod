@@ -47,11 +47,13 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtLogoutTime = new System.Windows.Forms.TextBox();
 			this.chkHearthstone = new System.Windows.Forms.CheckBox();
+			this.chkPortedByGM = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkPortedByGM);
 			this.groupBox1.Controls.Add(this.chkHearthstone);
 			this.groupBox1.Controls.Add(this.chkWhisperAnything);
 			this.groupBox1.Controls.Add(this.radNothing);
@@ -90,7 +92,7 @@
 			// 
 			this.radNothing.AutoSize = true;
 			this.radNothing.Checked = true;
-			this.radNothing.Location = new System.Drawing.Point(26, 245);
+			this.radNothing.Location = new System.Drawing.Point(26, 261);
 			this.radNothing.Name = "radNothing";
 			this.radNothing.Size = new System.Drawing.Size(127, 17);
 			this.radNothing.TabIndex = 17;
@@ -102,7 +104,7 @@
 			// radStopBot
 			// 
 			this.radStopBot.AutoSize = true;
-			this.radStopBot.Location = new System.Drawing.Point(26, 199);
+			this.radStopBot.Location = new System.Drawing.Point(26, 215);
 			this.radStopBot.Name = "radStopBot";
 			this.radStopBot.Size = new System.Drawing.Size(83, 17);
 			this.radStopBot.TabIndex = 16;
@@ -113,7 +115,7 @@
 			// radLogout
 			// 
 			this.radLogout.AutoSize = true;
-			this.radLogout.Location = new System.Drawing.Point(26, 176);
+			this.radLogout.Location = new System.Drawing.Point(26, 192);
 			this.radLogout.Name = "radLogout";
 			this.radLogout.Size = new System.Drawing.Size(76, 17);
 			this.radLogout.TabIndex = 15;
@@ -226,7 +228,7 @@
 			// 
 			// btnTest
 			// 
-			this.btnTest.Location = new System.Drawing.Point(423, 171);
+			this.btnTest.Location = new System.Drawing.Point(423, 187);
 			this.btnTest.Name = "btnTest";
 			this.btnTest.Size = new System.Drawing.Size(61, 26);
 			this.btnTest.TabIndex = 4;
@@ -238,7 +240,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(148, 178);
+			this.label2.Location = new System.Drawing.Point(148, 194);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(253, 13);
 			this.label2.TabIndex = 3;
@@ -246,7 +248,7 @@
 			// 
 			// txtLogoutTime
 			// 
-			this.txtLogoutTime.Location = new System.Drawing.Point(108, 175);
+			this.txtLogoutTime.Location = new System.Drawing.Point(108, 191);
 			this.txtLogoutTime.Name = "txtLogoutTime";
 			this.txtLogoutTime.Size = new System.Drawing.Size(34, 20);
 			this.txtLogoutTime.TabIndex = 2;
@@ -257,13 +259,24 @@
 			// chkHearthstone
 			// 
 			this.chkHearthstone.AutoSize = true;
-			this.chkHearthstone.Location = new System.Drawing.Point(26, 222);
+			this.chkHearthstone.Location = new System.Drawing.Point(26, 238);
 			this.chkHearthstone.Name = "chkHearthstone";
 			this.chkHearthstone.Size = new System.Drawing.Size(123, 17);
 			this.chkHearthstone.TabIndex = 20;
 			this.chkHearthstone.Text = "use Hearthstone first";
 			this.chkHearthstone.UseVisualStyleBackColor = true;
 			this.chkHearthstone.Click += new System.EventHandler(this.ValuesEdited);
+			// 
+			// chkPortedByGM
+			// 
+			this.chkPortedByGM.AutoSize = true;
+			this.chkPortedByGM.Location = new System.Drawing.Point(26, 135);
+			this.chkPortedByGM.Name = "chkPortedByGM";
+			this.chkPortedByGM.Size = new System.Drawing.Size(220, 17);
+			this.chkPortedByGM.TabIndex = 21;
+			this.chkPortedByGM.Text = "When I\'ve been teleported away (by GM)";
+			this.chkPortedByGM.UseVisualStyleBackColor = true;
+			this.chkPortedByGM.Click += new System.EventHandler(this.ValuesEdited);
 			// 
 			// ParanoiaMod
 			// 
@@ -299,6 +312,7 @@
 		private System.Windows.Forms.RadioButton radStopBot;
 		private System.Windows.Forms.CheckBox chkWhisperAnything;
 		private System.Windows.Forms.CheckBox chkHearthstone;
+		private System.Windows.Forms.CheckBox chkPortedByGM;
 
     }
 }

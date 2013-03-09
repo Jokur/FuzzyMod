@@ -31,6 +31,9 @@ namespace FuzzyMod.Mods {
 		private bool samePlayerIsGankingMeDead = false;
 		private Dictionary<ulong, int> playersKilledMe = new Dictionary<ulong, int>();
 
+		private bool beenPortedAway = false;
+		private MyWoW.Classes.Position beenPortedAwayLastPosition = null;
+
 
 		private volatile bool threadRunning = false;
         private Thread thread;
@@ -94,6 +97,8 @@ namespace FuzzyMod.Mods {
 			Plugin.ini.IniWriteValue(DisplayName, "samePlayerIsGankingMe", samePlayerIsGankingMe.ToString());
 			Plugin.ini.IniWriteValue(DisplayName, "samePlayerIsGankingMeTimes", samePlayerIsGankingMeTimes.ToString());
 
+			Plugin.ini.IniWriteValue(DisplayName, "beenPortedAway", beenPortedAway.ToString());
+
 			int radioButton = 0;
 			if(radStopBot.Checked) {
 				radioButton = 1;
@@ -118,7 +123,9 @@ namespace FuzzyMod.Mods {
 				samePlayerIsGankingMe = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "samePlayerIsGankingMe"));
 				samePlayerIsGankingMeTimes = int.Parse(Plugin.ini.IniReadValue(DisplayName, "samePlayerIsGankingMeTimes"));
 
+				beenPortedAway = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "beenPortedAway"));
 
+				
 				int radioButton = int.Parse(Plugin.ini.IniReadValue(DisplayName, "panicReaction"));
 				switch(radioButton) {
 					case 1:
@@ -172,6 +179,8 @@ namespace FuzzyMod.Mods {
                 samePlayerIsGankingMe = chkBeenKilled.Checked;
                 samePlayerIsGankingMeTimes = int.Parse(txtGotKilledTimes.Text);
 
+				beenPortedAway = chkPortedByGM.Checked;
+
                 logoutTime = int.Parse(txtLogoutTime.Text);
             } catch(Exception) {
                 MessageBox.Show("Error parsing text", "Parsing Error");
@@ -191,6 +200,8 @@ namespace FuzzyMod.Mods {
 
 			chkBeenKilled.Checked = samePlayerIsGankingMe;
 			txtGotKilledTimes.Text = samePlayerIsGankingMeTimes.ToString();
+
+			chkPortedByGM.Checked = beenPortedAway;
 
 			txtLogoutTime.Text = logoutTime.ToString();
 		}
@@ -223,6 +234,7 @@ namespace FuzzyMod.Mods {
 					CheckForAccuses(ref conditionToPanic);
 					CheckForPlayersTargetingMe(ref conditionToPanic);
 					CheckForPlayersKilledMe(ref conditionToPanic);
+					CheckForPortedAway(ref conditionToPanic);
 
 					if(conditionToPanic && !ObjectManager.Me.InCombat) {
 						Log("Panicking...");
@@ -276,6 +288,27 @@ namespace FuzzyMod.Mods {
 			playersTargetingMe.Clear();
 			playersKilledMe.Clear();
 			accusedBottingMessages.Clear();
+		}
+
+		void CheckForPortedAway(ref bool condition) {
+			if(!beenPortedAway)
+				return;
+
+			if(beenPortedAwayLastPosition == null) {
+				beenPortedAwayLastPosition = ObjectManager.Me.Position.Clone();
+			}
+
+			double distance = beenPortedAwayLastPosition.Distance2D(ObjectManager.Me.Position);
+			
+			// distance 60 is an arbitrary big number to count in charge, blink, death grip, etc...
+			// we might in the future need to do more advanced check
+			if(distance > 60 && ObjectManager.Me.IsAlive) { 
+				condition = true;
+				Log("I've just been teleported away");
+			}
+
+			beenPortedAwayLastPosition = ObjectManager.Me.Position.Clone();
+
 		}
 
         void CheckForAccuses(ref bool condition) {
