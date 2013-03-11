@@ -33,7 +33,7 @@ namespace FuzzyMod
             mods.Add(new ChatMod());
 			mods.Add(new DisassembleMod());
 			mods.Add(new CameraMod());
-			mods.Add(new TempMod());
+			//mods.Add(new TempMod());
 
             if(!Forms.AllForms.main.Visible) {
                 Forms.AllForms.main.MdiParent = ShadowBot.Forms.AllForms.MainForm;
