@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 using System.Threading;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 using ShadowBot;
 using MyWoW;
@@ -238,6 +240,23 @@ namespace FuzzyMod.Mods {
 
 					if(conditionToPanic && !ObjectManager.Me.InCombat) {
 						Log("Panicking...");
+
+						if(chkTakeScreenshot.Checked) {
+							Image image = MyWoW.Helpers.Interface.GetScreenshotImage(100);
+							if(image != null) {
+								try {
+									string folderPath = ShadowBot.Functions.Apps.StartupPath + "\\Plugins\\FuzzyMod\\Screenshots";
+									Directory.CreateDirectory(folderPath);
+									string fileName = "paranoia_screenshot_" + DateTime.Now.ToString("MM-dd-yy_HH-mm-ss") + ".png";
+									string file = folderPath + "\\" + fileName;
+									image.Save(file, ImageFormat.Png);
+									Log("Saved screenshot at: " + file);
+								} catch(Exception ex) {
+									Log("Saving screenshot threw exception: " + ex.Message);
+								}
+							}
+							Thread.Sleep(500);
+						}
 
 						if(chkHearthstone.Checked) {
 							Log("I'm hearthing the hell out of here!");

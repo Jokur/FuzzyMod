@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.chkPortedByGM = new System.Windows.Forms.CheckBox();
+			this.chkHearthstone = new System.Windows.Forms.CheckBox();
 			this.chkWhisperAnything = new System.Windows.Forms.CheckBox();
 			this.radNothing = new System.Windows.Forms.RadioButton();
 			this.radStopBot = new System.Windows.Forms.RadioButton();
@@ -46,13 +48,13 @@
 			this.btnTest = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtLogoutTime = new System.Windows.Forms.TextBox();
-			this.chkHearthstone = new System.Windows.Forms.CheckBox();
-			this.chkPortedByGM = new System.Windows.Forms.CheckBox();
+			this.chkTakeScreenshot = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkTakeScreenshot);
 			this.groupBox1.Controls.Add(this.chkPortedByGM);
 			this.groupBox1.Controls.Add(this.chkHearthstone);
 			this.groupBox1.Controls.Add(this.chkWhisperAnything);
@@ -77,6 +79,28 @@
 			this.groupBox1.Size = new System.Drawing.Size(592, 317);
 			this.groupBox1.TabIndex = 7;
 			this.groupBox1.TabStop = false;
+			// 
+			// chkPortedByGM
+			// 
+			this.chkPortedByGM.AutoSize = true;
+			this.chkPortedByGM.Location = new System.Drawing.Point(26, 135);
+			this.chkPortedByGM.Name = "chkPortedByGM";
+			this.chkPortedByGM.Size = new System.Drawing.Size(220, 17);
+			this.chkPortedByGM.TabIndex = 21;
+			this.chkPortedByGM.Text = "When I\'ve been teleported away (by GM)";
+			this.chkPortedByGM.UseVisualStyleBackColor = true;
+			this.chkPortedByGM.Click += new System.EventHandler(this.ValuesEdited);
+			// 
+			// chkHearthstone
+			// 
+			this.chkHearthstone.AutoSize = true;
+			this.chkHearthstone.Location = new System.Drawing.Point(26, 238);
+			this.chkHearthstone.Name = "chkHearthstone";
+			this.chkHearthstone.Size = new System.Drawing.Size(123, 17);
+			this.chkHearthstone.TabIndex = 20;
+			this.chkHearthstone.Text = "use Hearthstone first";
+			this.chkHearthstone.UseVisualStyleBackColor = true;
+			this.chkHearthstone.Click += new System.EventHandler(this.ValuesEdited);
 			// 
 			// chkWhisperAnything
 			// 
@@ -125,7 +149,7 @@
 			// 
 			// btnStartBotNow
 			// 
-			this.btnStartBotNow.Location = new System.Drawing.Point(204, 282);
+			this.btnStartBotNow.Location = new System.Drawing.Point(479, 287);
 			this.btnStartBotNow.Name = "btnStartBotNow";
 			this.btnStartBotNow.Size = new System.Drawing.Size(107, 23);
 			this.btnStartBotNow.TabIndex = 14;
@@ -137,7 +161,7 @@
 			// lblStartingBot
 			// 
 			this.lblStartingBot.AutoSize = true;
-			this.lblStartingBot.Location = new System.Drawing.Point(23, 287);
+			this.lblStartingBot.Location = new System.Drawing.Point(374, 292);
 			this.lblStartingBot.Name = "lblStartingBot";
 			this.lblStartingBot.Size = new System.Drawing.Size(84, 13);
 			this.lblStartingBot.TabIndex = 13;
@@ -256,27 +280,15 @@
 			this.txtLogoutTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtLogoutTime.TextChanged += new System.EventHandler(this.ValuesEdited);
 			// 
-			// chkHearthstone
+			// chkTakeScreenshot
 			// 
-			this.chkHearthstone.AutoSize = true;
-			this.chkHearthstone.Location = new System.Drawing.Point(26, 238);
-			this.chkHearthstone.Name = "chkHearthstone";
-			this.chkHearthstone.Size = new System.Drawing.Size(123, 17);
-			this.chkHearthstone.TabIndex = 20;
-			this.chkHearthstone.Text = "use Hearthstone first";
-			this.chkHearthstone.UseVisualStyleBackColor = true;
-			this.chkHearthstone.Click += new System.EventHandler(this.ValuesEdited);
-			// 
-			// chkPortedByGM
-			// 
-			this.chkPortedByGM.AutoSize = true;
-			this.chkPortedByGM.Location = new System.Drawing.Point(26, 135);
-			this.chkPortedByGM.Name = "chkPortedByGM";
-			this.chkPortedByGM.Size = new System.Drawing.Size(220, 17);
-			this.chkPortedByGM.TabIndex = 21;
-			this.chkPortedByGM.Text = "When I\'ve been teleported away (by GM)";
-			this.chkPortedByGM.UseVisualStyleBackColor = true;
-			this.chkPortedByGM.Click += new System.EventHandler(this.ValuesEdited);
+			this.chkTakeScreenshot.AutoSize = true;
+			this.chkTakeScreenshot.Location = new System.Drawing.Point(26, 284);
+			this.chkTakeScreenshot.Name = "chkTakeScreenshot";
+			this.chkTakeScreenshot.Size = new System.Drawing.Size(115, 17);
+			this.chkTakeScreenshot.TabIndex = 22;
+			this.chkTakeScreenshot.Text = "Take a screenshot";
+			this.chkTakeScreenshot.UseVisualStyleBackColor = true;
 			// 
 			// ParanoiaMod
 			// 
@@ -313,6 +325,7 @@
 		private System.Windows.Forms.CheckBox chkWhisperAnything;
 		private System.Windows.Forms.CheckBox chkHearthstone;
 		private System.Windows.Forms.CheckBox chkPortedByGM;
+		private System.Windows.Forms.CheckBox chkTakeScreenshot;
 
     }
 }
