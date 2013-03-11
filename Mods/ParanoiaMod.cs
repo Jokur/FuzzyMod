@@ -288,6 +288,9 @@ namespace FuzzyMod.Mods {
 			playersTargetingMe.Clear();
 			playersKilledMe.Clear();
 			accusedBottingMessages.Clear();
+
+
+			beenPortedAwayLastPosition = ObjectManager.Me.Position.Clone();
 		}
 
 		void CheckForPortedAway(ref bool condition) {
