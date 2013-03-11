@@ -101,6 +101,10 @@ namespace FuzzyMod.Mods {
 
 			Plugin.ini.IniWriteValue(DisplayName, "beenPortedAway", beenPortedAway.ToString());
 
+			Plugin.ini.IniWriteValue(DisplayName, "takeScreenshot", chkTakeScreenshot.Checked.ToString());
+
+			
+
 			int radioButton = 0;
 			if(radStopBot.Checked) {
 				radioButton = 1;
@@ -127,6 +131,7 @@ namespace FuzzyMod.Mods {
 
 				beenPortedAway = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "beenPortedAway"));
 
+				chkTakeScreenshot.Checked = bool.Parse(Plugin.ini.IniReadValue(DisplayName, "takeScreenshot"));
 				
 				int radioButton = int.Parse(Plugin.ini.IniReadValue(DisplayName, "panicReaction"));
 				switch(radioButton) {
