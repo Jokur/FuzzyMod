@@ -31,7 +31,7 @@ namespace FuzzyMod {
 
         public static void Plugin_Settings() {
             // If you mark your line with [DEBUG] the output will go to SB Debug tab
-            //Console.WriteLine("[DEBUG] Plugin Plugin_Settings()");
+            // Console.WriteLine("[DEBUG] Plugin Plugin_Settings()");
         }
     }
 }
